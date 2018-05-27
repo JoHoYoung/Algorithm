@@ -1,3 +1,6 @@
+//문제 1929
+//M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오.
+
 #include<iostream>
 #include<algorithm>
 #include<string.h>
