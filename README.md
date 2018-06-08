@@ -1,1 +1,14 @@
-# Algorithm
+<h1>Algorith Practice</h1>
+<br>
+<h3>   BackJoon's Problem Floder <h3><br>
+ Pratice Algorithm Example<br>
+At : <a href ='https://www.acmicpc.net/step'></a><br>
+<br>
+Solve  6~7 Examples A week
+<br>
+<br>
+<h3>Foundation of Algorithms Using C++ Floer<h3><br>
+Study Foundation of Algorithms Using C++/Richard Neapolitan
+<br>
+<br>
+Solve Smaple code At Some Topics( etc) recursion, DP, Backtracking...)
