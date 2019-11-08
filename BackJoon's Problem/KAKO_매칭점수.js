@@ -10,6 +10,7 @@ function solution(word, pages) {
                 baseScore++;
             }
         }
+
         let temp = pages[i].split("<meta property=\"og:url\" content=\"")[1];
         let url = temp.split("\"/>")[0];
 

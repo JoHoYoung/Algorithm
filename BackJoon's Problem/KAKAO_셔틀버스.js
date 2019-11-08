@@ -64,6 +64,7 @@ function solution(n, t, m, timetable) {
     }else{
         M = (answer%hour).toString()
     }
+
     console.log(bus);
     return `${H}:${M}`;
 }

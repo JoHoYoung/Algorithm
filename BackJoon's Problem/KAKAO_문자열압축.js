@@ -13,7 +13,6 @@ function sCompare(pivot, s, startIdx, depth) {
     arr.push(s.substring(startIdx,s.length));
     return;
   }
-축
   if (s.substring(startIdx, startIdx+len) === pivot) {
     sCompare(pivot, s, startIdx + len,depth+1);
   } else {

@@ -35,6 +35,7 @@ function solution(lines) {
             i++;
             continue;
         }
+
         if(upperend > Milis[i].start) {
             p = upperend - Milis[i].start;
         }
