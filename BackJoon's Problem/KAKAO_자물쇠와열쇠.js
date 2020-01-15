@@ -67,7 +67,6 @@ function solution(key, lock) {
               find = false;
               break;
             }
-
           }
           if(!find){
             break;
