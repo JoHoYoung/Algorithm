@@ -218,3 +218,27 @@ void main()
 
 	system("pause");
 }
+
+
+int parent[200];
+int ranking[200];
+
+int getParent(int idx){
+    if(parent[idx]==idx) return idx;
+    return parent[idx] = getParent(parent[idx]);
+}
+
+
+void unionParent(int i, int j){
+    int a = getParent(i);
+    int b = getParent(j);
+    
+    if(a!=b){
+        if(ranking[a] >ranking[b])
+            swap(a,b);
+    
+        parent[a]=b;
+        
+        if(ranki)
+    }
+}
