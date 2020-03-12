@@ -26,7 +26,6 @@ function solution(food_times, k) {
     dict[FOOD[i].T]++;
   }
 
-
   let remain = FOOD.length;
   let N = 1;
 
@@ -57,8 +56,8 @@ function solution(food_times, k) {
 }
 
 //
-// console.log(solution([3, 1, 2,100000], 1))
-//console.log(solution([10, 8, 3,2,5,1], 20));
-// console.log(solution([3, 1, 2], 3));
-// console.log(solution([3, 1, 2], 4));
-// console.log(solution([3, 1, 2], 5));
+console.log(solution([3, 1, 2,100000], 1))
+console.log(solution([10, 8, 3,2,5,1], 20));
+console.log(solution([3, 1, 2], 3));
+console.log(solution([3, 1, 2], 4));
+console.log(solution([3, 1, 2], 5));
