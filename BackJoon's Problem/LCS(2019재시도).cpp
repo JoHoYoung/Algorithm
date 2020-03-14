@@ -37,7 +37,7 @@ int main() {
                     DP[i][j] = 1;
                     continue;
                 }
-                DP[i][j] = max(DP[i][j-1],DP[i-1][j-1]+1);
+                DP[i][j] = DP[i-1][j-1]+1;
             }else{
 
                 if(i==0 && j==0)
@@ -53,7 +53,7 @@ int main() {
                     continue;
                 }
 
-                DP[i][j] = max(DP[i-1][j],max(DP[i][j-1],DP[i-1][j-1]));
+                DP[i][j] = max(DP[i-1][j],DP[i][j-1]);
             }
         }
     }
