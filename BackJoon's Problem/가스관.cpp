@@ -23,8 +23,6 @@ vector<P> el;
 
 bool visited[26][26][4];
 
-vector<int> Di[8];
-vector<int> Dj[8];
 
 int DI[4] = {-1, 0, 1, 0};
 int DJ[4] = {0, 1, 0, -1};
@@ -106,55 +104,6 @@ bool BFS() {
   return isFind;
 }
 
-void setDir() {
-
-  Di[0].push_back(-1);
-  Di[0].push_back(1);
-
-  Dj[0].push_back(0);
-  Dj[0].push_back(0);
-
-
-  Di[1].push_back(0);
-  Di[1].push_back(0);
-
-  Dj[1].push_back(-1);
-  Dj[1].push_back(1);
-
-  Di[2].push_back(-1);
-  Di[2].push_back(0);
-  Di[2].push_back(1);
-  Di[2].push_back(0);
-
-  Dj[2].push_back(0);
-  Dj[2].push_back(1);
-  Dj[2].push_back(0);
-  Dj[2].push_back(-1);
-
-  Di[3].push_back(1);
-  Di[3].push_back(0);
-
-  Dj[3].push_back(0);
-  Dj[3].push_back(1);
-
-  Di[4].push_back(-1);
-  Di[4].push_back(0);
-
-  Dj[4].push_back(0);
-  Dj[4].push_back(1);
-
-  Di[5].push_back(-1);
-  Di[5].push_back(0);
-
-  Dj[5].push_back(0);
-  Dj[5].push_back(-1);
-
-  Di[6].push_back(0);
-  Di[6].push_back(1);
-
-  Dj[6].push_back(-1);
-  Dj[6].push_back(0);
-}
 
 char pipes[7] = {124, '-', '+', '1', '2', '3', '4'};
 
@@ -164,7 +113,6 @@ int main() {
   cin.tie(0);
   cin >> R >> C;
 
-  setDir();
 
   for (int i = 0; i < R; i++) {
     for (int j = 0; j < C; j++) {
