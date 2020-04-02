@@ -1,114 +1,143 @@
-#include <iostream>
+#include<iostream>
 #include<cstring>
 #include<vector>
 #include<set>
 #include<algorithm>
+#include<cmath>
+#include<queue>
+#include<map>
+
+#define MAXN 31
+#define INF 987654321
+#define MAX 1000000
+
 using namespace std;
+using ll = long long;
+using P = pair<int, int>;
 
 int N, M;
-int board[300];
 
-int min(int a, int b){
-  if(a>b) return b;
-  return a;
+vector<int> el;
+vector<int> re;
+
+int ans = INF;
+
+int min(int a, int b) {
+  return a > b ? b : a;
 }
 
-vector<int> resultSet;
-vector<int> tempSet;
+bool sol(int m) {
 
-bool divide(int max){
-  int groupOfNumber = 0;
-  int tempSum = 0;
-  int cnt = 0 ;
-  tempSet.clear();
-  for(int i=0; i<N;i++){
+  re.clear();
+  int cnt = 0;
+
+  int sum = 0;
+  for (int i = 0; i < el.size(); i++) {
+    int r = el[i];
     cnt++;
-    if(board[i] > max){
-      return false;
+    // cout<<"SUM : "<<sum+r<<endl;
+    if (sum + r <= m) {
+      if (i == el.size() - 1) {
+        re.push_back(cnt);
+        return re.size() <= M;
+      }
+      sum += r;
+      continue;
     }
-    tempSum += board[i];
-    if(tempSum > max){
-      groupOfNumber ++ ;
-      tempSet.push_back(cnt -1);
-      cnt = 1;
-      tempSum = board[i];
-    }
-    if(groupOfNumber > M ){
-      return false;
-    }
+    if (r > m) return false;
+    re.push_back(cnt - 1);
+    cnt = 0;
+    sum = 0;
+    i--;
+    if (re.size() > M) return false;
   }
 
-  groupOfNumber ++;
-  if(groupOfNumber > M ){
-    return false;
-  }
-  tempSet.push_back(cnt);
   return true;
 }
 
-int result = 30000;
 int main() {
-
   ios_base::sync_with_stdio(0);
   cin.tie(0);
+  cin >> N >> M;
 
-  cin>>N>>M;
-  for(int i=0;i<N;i++){
-    cin>>board[i];
+
+  for (int i = 0; i < N; i++) {
+    int tmp;
+    cin >> tmp;
+    el.push_back(tmp);
   }
 
-  int left = 0;
-  int right = 30000;
+//  sort(el.begin(), el.end());
 
-  //sort(board, board + N);
+  int l = 0;
+  int r = INF;
 
-  while(left <= right){
-    int mid = (left + right)/2;
-    if(divide(mid)){
-      right = mid -1;
-      if(result > mid){
-        result = mid;
-        resultSet.clear();
-        resultSet.assign(tempSet.begin(), tempSet.end());
-      }
-    }else{
-      left = mid + 1;
+  while (l <= r) {
+    int mid = (l + r) / 2;
+    //  cout<<"mid "<<mid<<endl;
+    if (sol(mid)) {
+      r = mid - 1;
+      ans = min(ans, mid);
+    } else {
+      l = mid + 1;
     }
   }
 
-  cout<<result<<"\n";
+  cout << ans << endl;
+  re.clear();
 
-  // result를 최대값으로 M개의 그룹으로 나누는 경우
-  // 300개를 N개의 그룹;
-  // 2 1 1 1
-  // 1, 2 0
+  int cnt = 0;
+  int sum = 0;
+  for (int i = 0; i < el.size(); i++) {
+    int r = el[i];
+    cnt++;
+    if (sum + r <= ans) {
+      if (i == el.size() - 1) {
+        re.push_back(cnt);
+      }
+      sum += r;
+      continue;
+    }
+    re.push_back(cnt - 1);
+    cnt = 0;
+    sum = 0;
+    i--;
+  }
 
-  int groupSize = resultSet.size();
-  int dif = M - groupSize;
-  vector<int> final;
+  int rem = M - re.size();
+  vector<int> fin;
 
-  for(int i=0;i<resultSet.size();i++){
-    int target = resultSet.at(i);
-    if(target == 1){
-      final.push_back(target);
-    }else{
-      if(dif == 0){
-        final.push_back(target);
-      }else{
-        while(target >=1 && dif != 0){
-          final.push_back(1);
-          dif --;
-          target --;
+  for (int i = 0; i < re.size(); i++) {
+
+    if (rem <= 0) {
+      fin.push_back(re[i]);
+      continue;
+    }
+
+    if (re[i] == 1) {
+      fin.push_back(1);
+      continue;
+    } else {
+      if (re[i] > rem) {
+        fin.push_back(re[i] - rem);
+        while (rem > 0) {
+          fin.push_back(1);
+          rem--;
         }
-        final.push_back(target);
+      } else {
+        rem++;
+        for (int j = 0; j < re[i]; j++) {
+          fin.push_back(1);
+          rem--;
+        }
       }
     }
 
   }
 
-  for(auto it = final.begin(); it != final.end(); it++){
-    cout<<*it<<" ";
-  }
-
+//  for (int i = 0; i < re.size(); i++) cout << re[i] << " ";
+  for (int i = 0; i < fin.size(); i++) cout << fin[i] << " ";
   return 0;
+
 }
+
