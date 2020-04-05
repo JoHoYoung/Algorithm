@@ -41,7 +41,7 @@ function solution(cacheSize, cities) {
     if(match(cities[i])){
       cost += 1;
     }else{
-      cost += 5;
+      cost  += 5;
     }
   }
   return cost;
